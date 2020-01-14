@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.clostra.newnode.NewNode;
+
 import at.xtools.pwawrapper.ui.UIManager;
 import at.xtools.pwawrapper.webview.WebViewHelper;
 
@@ -20,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
         setTheme(R.style.AppTheme_NoActionBar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        NewNode.init();
 
         // Setup Helpers
         uiManager = new UIManager(this);
