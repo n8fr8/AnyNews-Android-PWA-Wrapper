@@ -9,6 +9,8 @@ import com.clostra.newnode.NewNode;
 
 import at.xtools.pwawrapper.ui.UIManager;
 import at.xtools.pwawrapper.webview.WebViewHelper;
+import info.guardianproject.netcipher.NetCipher;
+import info.guardianproject.netcipher.proxy.OrbotHelper;
 
 public class MainActivity extends AppCompatActivity {
     // Globals
@@ -16,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private WebViewHelper webViewHelper;
     private boolean intentHandled = false;
 
+    private boolean mUseNewNode = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Setup Theme
@@ -23,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        NewNode.init();
 
         // Setup Helpers
         uiManager = new UIManager(this);
@@ -57,6 +59,20 @@ public class MainActivity extends AppCompatActivity {
             // Load up the Web App
             webViewHelper.loadHome();
         }
+
+        if (mUseNewNode)
+            NewNode.init();
+        else {
+            OrbotHelper.get(this).init();
+
+            if (OrbotHelper.isOrbotInstalled(this))
+            {
+                //enable proxy
+
+            }
+
+        }
+
     }
 
     @Override
